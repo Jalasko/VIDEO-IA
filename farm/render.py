@@ -111,8 +111,8 @@ def overlays(img, t):
         k = smooth((t - story.FREEZE - 0.2) / 0.3)
         if k > 0:
             dy = (1 - k) * -80
-            text(d, W / 2, 330 + dy, "La dernière", 104, (255, 236, 120), stroke=(150, 30, 30), sw=10, alpha=int(255 * k))
-            text(d, W / 2, 460 + dy, "pomme", 150, (235, 50, 50), stroke=(255, 255, 255), sw=12, alpha=int(255 * k))
+            text(d, W / 2, 1480 - dy, "La dernière", 104, (255, 236, 120), stroke=(150, 30, 30), sw=10, alpha=int(255 * k))
+            text(d, W / 2, 1610 - dy, "pomme", 150, (235, 50, 50), stroke=(255, 255, 255), sw=12, alpha=int(255 * k))
     return Image.alpha_composite(img.convert('RGBA'), over).convert('RGB')
 
 
