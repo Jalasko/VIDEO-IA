@@ -2,7 +2,9 @@
 
 Comptine animée de 68 secondes : **Lilo** (petite fille de 3 ans) et **Bobo** (bébé éléphant bleu) prennent leur bain, en 6 plans.
 
-Résultat : [`output/bath_time_song.mp4`](output/bath_time_song.mp4) (1920×1080, 30 i/s, H.264 + AAC).
+Résultats :
+- [`output/bath_time_song.mp4`](output/bath_time_song.mp4) : 1920×1080 (YouTube), 30 i/s, H.264 + AAC
+- [`output/bath_time_song_tiktok.mp4`](output/bath_time_song_tiktok.mp4) : 1080×1920 vertical (TikTok, Reels, Shorts), avec une caméra qui suit les personnages et le texte placé hors des zones de l'interface TikTok
 
 ## Comment c'est fabriqué
 
@@ -25,6 +27,7 @@ pip install numpy pillow soundfile pyworld kokoro-onnx
 # modèles Kokoro : kokoro-v1.0.onnx + voices-v1.0.bin
 # https://github.com/thewh1teagle/kokoro-onnx/releases/tag/model-files-v1.0
 python3 build.py --voice-dir /chemin/vers/kokoro
+python3 build.py --voice-dir ... --vertical            # version TikTok 9:16
 python3 build.py --voice-dir ... --start 14 --end 20   # un extrait
 python3 build.py --voice-dir ... --mux-only            # refaire seulement l'audio
 ```
