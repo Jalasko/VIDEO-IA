@@ -12,6 +12,13 @@ W, H = 1920, 1080
 WI, HI = W * SS, H * SS
 
 
+def configure(w, h, ss=2):
+    """Change the virtual canvas size (e.g. 1080x1920 for a vertical world)."""
+    global W, H, WI, HI, SS
+    W, H, SS = w, h, ss
+    WI, HI = W * SS, H * SS
+
+
 FONT_PATH = __file__.rsplit('/', 2)[0] + '/assets/fonts/Fredoka.ttf'
 _fonts = {}
 
@@ -365,9 +372,12 @@ def sparkle(fr, cx, cy, r, alpha=1.0, color=(255, 250, 210)):
     glow(fr, cx, cy, r * 1.6, (255, 240, 200), 0.6 * alpha)
 
 
-def vgrad(fr, y0, y1, c0, c1, x0=0, x1=W):
+def vgrad(fr, y0, y1, c0, c1, x0=0, x1=None):
+    x1 = W if x1 is None else x1
     Y0, Y1 = int(y0 * SS), int(y1 * SS)
     X0, X1 = int(x0 * SS), int(x1 * SS)
+    if Y1 <= Y0 or X1 <= X0:
+        return
     t = np.linspace(0, 1, max(Y1 - Y0, 1), dtype=np.float32)[:, None, None]
     col = np.asarray(c0, np.float32) * (1 - t) + np.asarray(c1, np.float32) * t
     fr.comp(X0, Y0, np.broadcast_to(col, (Y1 - Y0, X1 - X0, 3)),

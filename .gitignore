@@ -3,3 +3,4 @@ output/vocals.wav
 __pycache__/
 *.pyc
 output/_video_vertical.mp4
+output/_farm_video.mp4

@@ -38,3 +38,27 @@ Il faut aussi `ffmpeg`. Le rendu complet prend environ 20 minutes sur 4 cœurs.
 
 - **Pas un vrai rendu Pixar ni de la 4K** : c'est une imitation 2,5D. Pour un rendu 3D cinématographique, il faut un modèle de génération vidéo (Veo, Runway, Kling, Sora…). Les prompts plan par plan sont prêts dans [`prompts/shots.md`](prompts/shots.md).
 - **La voix chantée est synthétique** : elle suit bien les notes et le rythme, mais on entend que c'est une voix d'ordinateur, pas une chanteuse.
+
+---
+
+# « La dernière pomme » (TikTok, 60 s)
+
+Comédie de ferme en 8 plans et en vertical 1080×1920. Gaston le coq, Mimi la cochonne et Bernard l'âne se disputent la dernière pomme, et Pico la souris la mange.
+
+Résultat : [`output/la_derniere_pomme.mp4`](output/la_derniere_pomme.mp4)
+
+- **Code** : `farm/` (`story.py` ligne de temps, `chars.py` personnages, `scenes.py` décor et plans, `voices.py` voix, `sound.py` musique et bruitages, `render.py` caméra et sous-titres)
+- **Voix** : il n'existe qu'une voix française (Kokoro `ff_siwis`). Chaque personnage est obtenu en la transformant avec le vocodeur WORLD (hauteur, formants, intonation) :
+
+  | Personnage | Hauteur médiane | Caractère |
+  |---|---|---|
+  | Bernard | ~107 Hz | grave et lent |
+  | Gaston | ~153 Hz | fier |
+  | Mimi | ~228 Hz | piquante |
+  | Pico | ~322 Hz | petite souris |
+
+- **Synchro labiale** : chaque bouche s'ouvre selon l'énergie de la voix du personnage, image par image.
+
+```bash
+python3 build_farm.py --voice-dir /chemin/vers/kokoro
+```
